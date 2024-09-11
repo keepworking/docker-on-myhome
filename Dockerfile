@@ -36,6 +36,14 @@ RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list ; \
     libxml-simple-perl vim libncurses5-dev flex bison gnupg bc rsync libssl-dev \
     lib32z1 autoconf tig tmux kmod openssh-server curl tree locales sudo
 
+# Append lazygit
+
+RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') && \
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" && \
+    tar xf lazygit.tar.gz lazygit && \
+    install lazygit /usr/local/bin && \
+    rm -rf lazygit_* lazygit
+
 # Set Timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
