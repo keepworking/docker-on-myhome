@@ -22,7 +22,7 @@ RUN echo "${USERNAME}:1234" | chpasswd
 RUN chage -d 0 ${USERNAME}
 
 # Install Default Packages
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS="yes"
 
 RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list ; \
