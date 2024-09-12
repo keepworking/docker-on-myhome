@@ -12,8 +12,8 @@ LABEL description="nodejs docker on myhome"
 ARG USERNAME
 USER root
 
-RUN curl -fsSL https://fnm.vercel.app/install | /bin/bash -s -- -s -d /usr/bin/
-RUN chmod a+x /usr/bin/fnm
+RUN curl -fsSL https://fnm.vercel.app/install | /bin/bash -s -- -s -d /usr/local/bin/
+RUN chmod a+x /usr/local/bin/fnm
 
 RUN echo 'eval "`fnm env`"' >> /etc/bash.bashrc
 RUN eval "$(fnm env)" && fnm use --install-if-missing 20
