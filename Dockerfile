@@ -29,12 +29,12 @@ RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list ; \
     sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list ; \
     apt-get update
 
-    RUN apt-get install -y apt-utils \
+RUN apt-get install -y apt-utils \
     gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio \
     python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
     libsdl1.2-dev xterm make xsltproc docbook-utils fop dblatex xmlto gettext \
     libxml-simple-perl vim libncurses5-dev flex bison gnupg bc rsync libssl-dev \
-    lib32z1 autoconf tig tmux kmod openssh-server curl tree locales sudo
+    lib32z1 autoconf tig tmux kmod openssh-server curl tree locales sudo bash-completion
 
 # Append lazygit
 
