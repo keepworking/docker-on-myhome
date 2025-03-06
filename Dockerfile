@@ -1,6 +1,7 @@
 
 #syntax=docker/dockerfile:1.2
-FROM ubuntu:22.04
+ARG UBT_VER
+FROM ubuntu:${UBT_VER:-22.04}
 
 # docker file info
 LABEL author="keepworking"
@@ -25,9 +26,7 @@ RUN chage -d 0 ${USERNAME}
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS="yes"
 
-RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list ; \
-    sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list ; \
-    apt-get update
+RUN apt-get update
 
 RUN apt-get install -y apt-utils \
     gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio \
