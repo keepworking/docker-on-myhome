@@ -70,15 +70,17 @@ RUN apt install -y \
     xz-utils \
     zlib1g-dev
 
+# Install repo
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ./repo && install ./repo /usr/local/bin && rm -rf ./repo
-RUN mkdir /optee
-RUN chmod 0777 /optee
-USER ${USERNAME}
-WORKDIR /optee
-RUN repo init -u https://github.com/OP-TEE/manifest.git -m qemu_v8.xml && repo sync -j10
-WORKDIR /optee/build
-RUN make -j3 toolchains
-RUN make -j$(nproc) check
+
+# Fetch Optee and install
+#RUN mkdir /optee
+#RUN chmod 0777 /optee
+#WORKDIR /optee
+#RUN repo init -u https://github.com/OP-TEE/manifest.git -m qemu_v8.xml && repo sync -j10
+#WORKDIR /optee/build
+#RUN make -j3 toolchains
+#RUN make -j$(nproc) check
 # nothing
 
 USER ${USERNAME}
