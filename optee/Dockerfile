@@ -5,7 +5,7 @@ FROM ${USERNAME}-base22.04
 # docker file info
 LABEL author="keepworking"
 LABEL version="1.0"
-LABEL description="nodejs docker on myhome"
+LABEL description="optee docker on myhome"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV FORCE_UNSAFE_CONFIGURE=1
