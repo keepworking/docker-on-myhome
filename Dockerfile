@@ -26,7 +26,7 @@ RUN echo "${USERNAME}:1234" | chpasswd
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS="yes"
 
-RUN apt-get update
+RUN apt-get update -y
 
 RUN apt-get install -y apt-utils \
     gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio \
@@ -53,6 +53,17 @@ RUN localedef -i ko_KR -c -f UTF-8 ko_KR.UTF-8
 
 ENV LANG=en_US.UTF-8
 ENV TERM=xterm-256color
+
+# add vim config
+
+RUN apt install -y vim
+RUN apt install -y clangd
+
+COPY vimrc.append /vimrc.append
+RUN mkdir -p /etc/vim/autoload
+RUN curl -fLo /etc/vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+RUN cat /vimrc.append >> /etc/vim/vimrc && rm /vimrc.append
+RUN vim -c 'PlugInstall | qa'
 
 # switch to user
 
