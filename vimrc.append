@@ -26,3 +26,6 @@ let g:asyncomplete_auto_popup = 1
 set laststatus=2
 set number
 
+highlight LspReferenceText cterm=bold ctermfg=black ctermbg=lightgrey
+highlight LspReferenceRead cterm=bold ctermfg=black ctermbg=lightgrey
+highlight LspReferenceWrite cterm=bold ctermfg=black ctermbg=lightgrey

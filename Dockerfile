@@ -58,6 +58,7 @@ ENV TERM=xterm-256color
 
 RUN apt install -y vim
 RUN apt install -y clangd
+RUN pip install pyright
 
 COPY vimrc.append /vimrc.append
 RUN mkdir -p /etc/vim/autoload
