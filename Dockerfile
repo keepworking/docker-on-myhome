@@ -20,7 +20,6 @@ RUN echo $USERNAME
 RUN groupadd -g ${USERGID} ${USERNAME}
 RUN useradd -u ${USERUID} -g ${USERGID} --create-home --shell /bin/bash --groups sudo ${USERNAME}
 RUN echo "${USERNAME}:1234" | chpasswd
-#RUN chage -d 0 ${USERNAME}
 
 # Install Default Packages
 ENV DEBIAN_FRONTEND=noninteractive
