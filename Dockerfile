@@ -26,6 +26,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS="yes"
 
 RUN apt-get update -y
+RUN apt-get full-upgrade -y
 
 RUN apt-get install -y apt-utils \
     gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio \
