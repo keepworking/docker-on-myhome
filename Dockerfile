@@ -20,7 +20,7 @@ RUN echo $USERNAME
 # make user
 RUN groupadd -g ${USERGID} ${USERNAME} && \
     useradd -u ${USERUID} -g ${USERGID} --create-home --shell /bin/bash --groups sudo ${USERNAME} || \
-    usermod -l ${USERNAME} ubuntu
+    usermod -l ${USERNAME} ubuntu && groupmod -n ${USERNAME} ubuntu
 RUN echo "${USERNAME}:1234" | chpasswd
 
 # Install Default Packages
@@ -64,7 +64,7 @@ RUN apt install -y strace valgrind
 
 RUN apt install -y vim
 RUN apt install -y clangd
-RUN pip install pyright
+RUN pip install pyright || pip install --break-system-packages pyright
 
 COPY vimrc.append /vimrc.append
 RUN mkdir -p /etc/vim/autoload
