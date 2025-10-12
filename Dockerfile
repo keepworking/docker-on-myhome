@@ -17,8 +17,10 @@ ARG USERGID
 USER root 
 
 RUN echo $USERNAME
-RUN groupadd -g ${USERGID} ${USERNAME}
-RUN useradd -u ${USERUID} -g ${USERGID} --create-home --shell /bin/bash --groups sudo ${USERNAME}
+# make user
+RUN groupadd -g ${USERGID} ${USERNAME} && \
+    useradd -u ${USERUID} -g ${USERGID} --create-home --shell /bin/bash --groups sudo ${USERNAME} || \
+    usermod -l ${USERNAME} ubuntu
 RUN echo "${USERNAME}:1234" | chpasswd
 
 # Install Default Packages
@@ -53,6 +55,10 @@ RUN localedef -i ko_KR -c -f UTF-8 ko_KR.UTF-8
 
 ENV LANG=en_US.UTF-8
 ENV TERM=xterm-256color
+
+# debug
+
+RUN apt install -y strace valgrind
 
 # add vim config
 
