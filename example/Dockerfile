@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.2
 ARG USERNAME
-FROM ${USERNAME}-base
+FROM ${USERNAME}-base22.04
 
 # docker file info
 LABEL author="keepworking"
